@@ -7,9 +7,9 @@ const register= async (req,res)=> {
 		
 		const newUser= {
 	
-			userName: req.body.username
-			email: req.body.email
-			password: cryptojs.AES.encrypt(req.body.password,process.env.JWT_SECRET).toString();
+			userName: req.body.username,
+			email: req.body.email,
+			password: cryptojs.AES.encrypt(req.body.password,process.env.JWT_SECRET).toString()
 		};
 	
 		const user= await Users.create(newUser)
