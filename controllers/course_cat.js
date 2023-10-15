@@ -13,8 +13,11 @@ const AddCourseCat= async (req,res)=>{
 		res.status(501).json("Course Cat failed to be created")
 	}
 }
-//updateCoursecat
+
+//getAllCoursesCat
+//GetOneCourseCat
+//updateCoursecat detail
 //deleteCourseCat
-//Add new course to CourseCat
+//Add new course to a CourseCat
 
 module.exports={AddCourseCat}
