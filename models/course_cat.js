@@ -10,7 +10,7 @@ const courseCats= new mongoose.Schema(
 			unique:[true,"Name already exists"]
 		},
 
-		content:{
+		CourseList:{
 			type: Array
 		}
 	}

@@ -29,6 +29,10 @@ const courseSchema= new mongoose.Schema(
 		Objectives: {
 			type: Array,
 			required: [true, "Must provide Course Objectives"]
+		},
+
+		Content: {
+			type: Array
 		}
 
 	}
