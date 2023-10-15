@@ -40,4 +40,4 @@ userSchema.methods.createJWT= function () {
 		)
 }
 
-module.exports=mongoose.model('Users',userSchema)
+module.exports=mongoose.model('adminUsers',userSchema)
