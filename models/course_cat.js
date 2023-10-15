@@ -8,6 +8,10 @@ const courseCats= new mongoose.Schema(
 			required:[true, "Must provide a name"],
 			minlength:[1,"Name atleast one character long"],
 			unique:[true,"Name already exists"]
+		},
+
+		content:{
+			type: Array
 		}
 	}
 )
