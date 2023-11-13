@@ -12,6 +12,7 @@ app.use(express.json())
 app.use('/api/user',userRouter)
 
 app.use('/api/course',authMiddleware,courseCatRouter)
+
 const start = async ()=> {
 
 	try{
