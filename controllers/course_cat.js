@@ -64,9 +64,28 @@ const addCourseToCat = async (req,res)=> {
 
 }
 
+const DeleteCat= async (req,res)=>{
+		
+	try{
+		await courseCat.deleteOne({_id:req.body.id})
+
+		const result= await CatCourseRel.deleteMany({catId: req.body.id})
+
+		if(result.deletedCount){
+			res.status(200).json({msg:"Deleted Course Category and all its relations",Count: result.deletedCount})
+		}
+
+		else
+			res.status(404).json({msg:"Course Category not found"})
+	}
+	catch(error){
+		console.log(error)
+		res.status(500).json("Internal Server Error")
+	}
+
+}
+
 //GetOneCourseCat
 //updateCoursecat detail
-//deleteCourseCat
-//Add new course to a CourseCat
 
-module.exports={AddCourseCat,getAllCoursesCat,addCourseToCat}
+module.exports={AddCourseCat,getAllCoursesCat,addCourseToCat,DeleteCat }
