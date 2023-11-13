@@ -1,4 +1,5 @@
 const Courses= require('../models/courses')
+const CatCourseRel= require('../models/cat_course_rel')
 
 const AddCourse= async (req,res)=> {
 
@@ -72,6 +73,20 @@ const AllCourses= async (req,res)=>{
 
 }
 
-//TODO: update Course, delete Course, Add Video, Delete Video, update Video detail
+const DeleteCourse= async (req,res)=>{
+	try{
+		
+		await Courses.deleteOne({_id: req.body.id})
+		const result = await CatCourseRel.deleteMany({courseId: req.body.id})
 
-module.exports={AddCourse, AddVideo,AllCourses}
+		res.status(200).json({msg:"Count of Category Course Relation ",Count:result.deletedCount})
+	}
+	catch(error){
+		console.log(error)
+		res.status(500).json("Internal Server Error")
+	}
+}
+
+//TODO: update Course, delete Course, Remove Video, update Video detail
+
+module.exports={AddCourse, AddVideo,AllCourses,DeleteCourse}
