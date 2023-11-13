@@ -31,10 +31,8 @@ const AddVideo=async (req,res)=>{
 	try{
 		const course= await Courses.findOne({_id:req.body.id})
 		
-		console.log(course)
 
 		if(!course){
-			console.log("course not found")
 			res.status(404).json("Course not found")
 		}
 
@@ -44,7 +42,6 @@ const AddVideo=async (req,res)=>{
 
 			videoArray.push(req.body.video_id)
 
-			console.log(videoArray)
 
 			const result= await Courses.updateOne({_id:course._id},{Content:videoArray})
 			
@@ -59,6 +56,22 @@ const AddVideo=async (req,res)=>{
 	}
 }
 
+const AllCourses= async (req,res)=>{
+	
+	try{
+
+		const result= await Courses.find({});
+		
+		res.status(200).json(result)
+	}
+
+	catch(error){
+		console.log(error)
+		res.status(500).json("Internal Server error")
+	}
+
+}
+
 //TODO: update Course, delete Course, Add Video, Delete Video, update Video detail
 
-module.exports={AddCourse, AddVideo}
+module.exports={AddCourse, AddVideo,AllCourses}
