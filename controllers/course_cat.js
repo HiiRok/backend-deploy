@@ -14,10 +14,24 @@ const AddCourseCat= async (req,res)=>{
 	}
 }
 
+const getAllCoursesCat = async (req,res)=>{
+
+	try{
+		const result = await courseCat.find({})
+
+		res.status(200).json(result)
+	}
+
+	catch(error){
+		console.log(error)
+		res.status(500).json("Internal Server error")
+	}
+}
+
 //getAllCoursesCat
 //GetOneCourseCat
 //updateCoursecat detail
 //deleteCourseCat
 //Add new course to a CourseCat
 
-module.exports={AddCourseCat}
+module.exports={AddCourseCat,getAllCoursesCat}
