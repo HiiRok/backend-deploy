@@ -8,7 +8,7 @@ const courseSchema= new mongoose.Schema(
 			required:[true,"Name must be provided"],
 			unique:[true, "Course Name already taken"],
 			minlength: [1,"Name must have atleast 1 character"]
-		}
+		},
 
 		Brief_Desc: {
 			type: String,
@@ -18,7 +18,7 @@ const courseSchema= new mongoose.Schema(
 
 		Price: {
 			type: Number,
-			required:[true, "Must provide a type"]
+			required:[true, "Must provide a price"]
 		},
 
 		Author: {
