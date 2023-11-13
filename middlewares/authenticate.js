@@ -3,7 +3,7 @@ const jwt= require('jsonwebtoken')
 
 const auth= async (req,res,next)=>{
 	
-	const authHeader= req.Headers.token
+	const authHeader= req.Headers.Authorization
 
 	if(!authHeader || !authHeader.startsWith('Bearer '))
 		res.status(403).json("Invalid Authentication")

@@ -11,7 +11,7 @@ const courseCats= new mongoose.Schema(
 		},
 
 		CourseList:{
-			type: Array
+			type: Array  // contains the ids of all the courses under this category
 		}
 	}
 )

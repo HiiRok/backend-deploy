@@ -32,7 +32,7 @@ const courseSchema= new mongoose.Schema(
 		},
 
 		Content: {
-			type: Array
+			type: Array   // contains the ids of all the videos it contains
 		}
 
 	}
