@@ -3,12 +3,14 @@ const cryptojs= require('crypto-js')
 
 const login= async (req,res)=> {
 
+//	console.log("inside login")
 	const {email,password}= req.body
 
 	try{
 		
 		const user= await Users.findOne({email})
 
+		console.log(user)
 		if(!user)
 		{
 			console.log("User not found")
@@ -17,7 +19,8 @@ const login= async (req,res)=> {
 
 		else
 		{
-			const bytes= cyptojs.AES.decrypt(user.password,process.env.JWT_SECRET) 
+
+			const bytes=cryptojs.AES.decrypt(user.password,process.env.JWT_SECRET)
 			const originalPassword= bytes.toString(cryptojs.enc.Utf8)
 
 			if(originalPassword!==password)
@@ -27,9 +30,9 @@ const login= async (req,res)=> {
 			}
 
 			else
+			
 			{
 				const token= user.createJWT();
-
 				res.status(201).json({user_info:{email:user.email,id:user._id,username:user.userName},token})
 			}
 		}
