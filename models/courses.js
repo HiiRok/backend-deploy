@@ -33,6 +33,10 @@ const courseSchema= new mongoose.Schema(
 
 		Content: {
 			type: Array   // contains the ids of all the videos it contains
+		},
+
+		ImgPath: {
+			type: String // contains path to the thumbnail
 		}
 
 	}

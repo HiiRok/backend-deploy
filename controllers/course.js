@@ -8,7 +8,8 @@ const AddCourse= async (req,res)=> {
 		Brief_Desc: req.body.description,
 		Price: req.body.price,
 		Author: req.body.Author,
-		Objectives: req.body.objectives
+		Objectives: req.body.objectives,
+		ImgPath: req.body.ImgPath,
 	}
 
 	try {
@@ -39,7 +40,7 @@ const AddVideo=async (req,res)=>{
 
 		else
 		{
-			let videoArray= [];
+			let videoArray= course.Content;
 
 			videoArray.push(req.body.video_id)
 
@@ -57,12 +58,14 @@ const AddVideo=async (req,res)=>{
 	}
 }
 
+
 const AllCourses= async (req,res)=>{
 	
 	try{
 
-		const result= await Courses.find({});
-		
+		console.log("Inside All Courses")
+		const result= await Courses.find({});	
+
 		res.status(200).json(result)
 	}
 
@@ -72,6 +75,8 @@ const AllCourses= async (req,res)=>{
 	}
 
 }
+
+
 
 const DeleteCourse= async (req,res)=>{
 	try{
@@ -87,6 +92,33 @@ const DeleteCourse= async (req,res)=>{
 	}
 }
 
-//TODO: update Course, delete Course, Remove Video, update Video detail
 
-module.exports={AddCourse, AddVideo,AllCourses,DeleteCourse}
+//need id of the course
+const getOneCourse= async (req,res)=>{
+	
+	try{
+		const course= await Courses.findOne({_id: req.body.id})
+		
+		console.log("OneCourse \n")
+
+		if(!course)
+		{
+			console.log("Course Not found")
+			res.status(404).json("Course Not Found")
+			return
+		}
+
+		res.status(200).json(course)
+	}
+	catch(error){
+		console.log("Get Course", error)
+		res.status(500).json(error)
+	}
+}
+
+
+
+//TODO: update Course, Remove Video, update Video detail
+//TODO: send image of courses
+
+module.exports={AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse}

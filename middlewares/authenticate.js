@@ -3,7 +3,7 @@ const jwt= require('jsonwebtoken')
 
 const auth= async (req,res,next)=>{
 	
-	console.log("inside auth, ", req.headers.authorization)
+	console.log("inside auth, ")
 
 	const authHeader= req.headers.authorization
 
@@ -18,11 +18,14 @@ const auth= async (req,res,next)=>{
 		await jwt.verify(token, process.env.JWT_SECRET,(err,user)=>{
 
 			if(err)
+			{
 				res.status(403).json("Invalid Token")
-
+				return ;
+			}
 			else
 			{
 				req.user=user;
+				console.log("success")
 				next();
 			}
 		})

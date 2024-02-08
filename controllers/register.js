@@ -3,8 +3,10 @@ const cryptojs= require('crypto-js')
 
 const register= async (req,res)=> {
 
+
 	try {
-	
+		console.log(req)
+		console.log(req.body)
 		const newUser= {
 	
 			userName: req.body.username,
