@@ -14,7 +14,7 @@ const login= async (req,res)=> {
 		if(!user)
 		{
 			console.log("User not found")
-			res.status(404).json("Wrong Username or Password")
+			res.status(404).json({keyValue:"Wrong Username or Password"})
 		}
 
 		else
@@ -26,7 +26,7 @@ const login= async (req,res)=> {
 			if(originalPassword!==password)
 			{
 				console.log("Wrong Password")
-				res.status(404).json("Wrong Username or Password")
+				res.status(404).json({keyValue:"Wrong Username or Password"})
 			}
 
 			else
