@@ -119,6 +119,5 @@ const getOneCourse= async (req,res)=>{
 
 
 //TODO: update Course, Remove Video, update Video detail
-//TODO: send image of courses
 
 module.exports={AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse}
