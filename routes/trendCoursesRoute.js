@@ -1,12 +1,12 @@
 const express = require('express')
 
-const router = express.Router();
+const noAuthTrendRouter = express.Router();
+const AuthTrendRouter = express.Router();
 
-const {getAll}= require('../controllers/trendCourseController')
+const {getAll,createOne}= require('../controllers/trendCourseController')
+
+noAuthTrendRouter.route('/').get(getAll)
+AuthTrendRouter.route('/').post(createOne)
 
 
-
-router.route('/').get(getAll)
-
-
-module.exports= router;
+module.exports= {noAuthTrendRouter, AuthTrendRouter};

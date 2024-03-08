@@ -9,7 +9,7 @@ const connectDB=require('./db/connect')
 const userRouter= require('./routes/userRouter')
 const authMiddleware= require('./middlewares/authenticate')
 const courseCatRouter= require('./routes/course_routes')
-const trendCoursesRouter = require('./routes/trendCoursesRoute')
+const {noAuthTrendRouter, AuthTrendRouter} = require('./routes/trendCoursesRoute')
 const path = require('path');
 
 app.use(cors())
@@ -17,7 +17,8 @@ app.use(express.json())
 
 app.use(express.static(path.join(__dirname,'res/imgs')))
 
-app.use('/api/trend_course', trendCoursesRouter)
+app.use('/api/trend_course', noAuthTrendRouter)
+app.use('/api/trend_course/auth',authMiddleware, AuthTrendRouter)
 
 app.use('/api/user',userRouter)
 app.use('/api/course',authMiddleware,courseCatRouter)
