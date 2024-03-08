@@ -62,4 +62,18 @@ const createOne= async (req,res) => {
 }
 
 
-module.exports= {getAll, createOne}
+const deleteOne = async (req,res) => {
+
+	try{
+		await trendCourses.deleteOne({_id:req.body.id})
+		res.status(200).json({msg:"Trend Course Deleted Successfully"});
+
+	}catch(error){
+		console.log("Delete Trend Course: Error: ",error)
+
+		res.status(500).json("Internal Server Error");
+	}
+}
+
+
+module.exports= {getAll, createOne,deleteOne}
