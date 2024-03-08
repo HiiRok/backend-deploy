@@ -1,5 +1,6 @@
 const Courses= require('../models/courses')
 const CatCourseRel= require('../models/cat_course_rel')
+const trendCourses= require('../models/trend_courses')
 
 const AddCourse= async (req,res)=> {
 
@@ -82,7 +83,8 @@ const DeleteCourse= async (req,res)=>{
 	try{
 		
 		await Courses.deleteOne({_id: req.body.id})
-		const result = await CatCourseRel.deleteMany({courseId: req.body.id})
+		let result = await CatCourseRel.deleteMany({courseId: req.body.id})
+		result = await trendCourses.deleteOne({courseId: req.body.id})
 
 		res.status(200).json({msg:"Count of Category Course Relation ",Count:result.deletedCount})
 	}
