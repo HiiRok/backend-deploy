@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: [true, "Must provide a password"],
 			minlength: [8,"Password must contain atleast eight characters"]
+		},
+
+		courses: {
+			type: Array,
 		}
 	}
 )

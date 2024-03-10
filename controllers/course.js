@@ -1,6 +1,7 @@
 const Courses= require('../models/courses')
 const CatCourseRel= require('../models/cat_course_rel')
 const trendCourses= require('../models/trend_courses')
+const Users = require('../models/user')
 
 const AddCourse= async (req,res)=> {
 
@@ -30,6 +31,7 @@ const AddCourse= async (req,res)=> {
 
 const AddVideo=async (req,res)=>{
 	
+
 
 	try{
 		const course= await Courses.findOne({_id:req.body.id})
@@ -62,6 +64,8 @@ const AddVideo=async (req,res)=>{
 
 const AllCourses= async (req,res)=>{
 	
+
+
 	try{
 
 		console.log("Inside All Courses")
@@ -119,7 +123,30 @@ const getOneCourse= async (req,res)=>{
 }
 
 
+const addCourseToUser = async (req,res)=>{
+
+		
+	console.log("Inside add Course to User")
+	try{
+		const user = await Users.findOne({_id:req.user.userID});
+		let coursesList = user.courses;
+		
+		coursesList.push(req.body.courseId)
+
+		const result = await Users.updateOne({_id:req.user.userID}, {courses:coursesList});
+
+		res.status(200).json("Course added to User");
+
+	}catch(error){
+
+		console.log(error)
+		res.status(500).json("Internal Server Error");
+	}
+	
+}
+
+
 
 //TODO: update Course, Remove Video, update Video detail
 
-module.exports={AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse}
+module.exports={AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse,addCourseToUser}
