@@ -3,10 +3,11 @@ const cryptojs= require('crypto-js')
 
 const register= async (req,res)=> {
 
+	console.log("In Register")
 
 	try {
 		const newUser= {
-	
+
 			userName: req.body.username,
 			email: req.body.email,
 			password: cryptojs.AES.encrypt(req.body.password,process.env.JWT_SECRET).toString()
@@ -18,6 +19,7 @@ const register= async (req,res)=> {
 	}
 
 	catch(error){
+		console.log(error)
 		res.status(500).json(error)
 	}
 }
