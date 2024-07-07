@@ -10,7 +10,10 @@ const register= async (req,res)=> {
 
 			userName: req.body.username,
 			email: req.body.email,
-			password: cryptojs.AES.encrypt(req.body.password,process.env.JWT_SECRET).toString()
+			password: cryptojs.AES.encrypt(req.body.password,process.env.JWT_SECRET).toString(),
+			Age: req.body.age,
+			Gender: req.body.gender,
+			organization: req.body.organization
 		};
 		const user= await Users.create(newUser)
 		const token= user.createJWT();

@@ -31,6 +31,20 @@ const userSchema = new mongoose.Schema(
 
 		courses: {
 			type: Array,
+		},
+
+		Age:{
+			type: Number,
+			required: [true,"Must provide age"]
+		},
+
+		Gender:{
+			type: String,
+			required:[true, "Must provide Gender"]
+		},
+
+		organization: {
+			type: String,
 		}
 	}
 )
