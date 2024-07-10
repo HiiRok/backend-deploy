@@ -145,8 +145,35 @@ const addCourseToUser = async (req,res)=>{
 	
 }
 
+const checkCoursePurchased = async (req,res)=>{
+
+	console.log("Inside Check Course Purchase")
+
+	try {
+		const user = await Users.findOne({_id:req.user.userID});
+		let coursesList = user.courses;
+
+		let courseId= req.params.id
+		let course
+
+		if(coursesList.find(courseIdList=> courseIdList==courseId)){
+
+			 course= await Courses.findOne({_id:courseId})
+			 res.status(200).json({courseList:course, _id:user._id,hasBought:true })
+			 return
+		}
+		res.status(200).json({courseList:course, _id:user._id, hasBought:false })
+		
+	} catch (error) {
+		
+		console.log(error)
+		res.status(500).json("Internal Server Error")
+
+	}
+
+}
 
 
 //TODO: update Course, Remove Video, update Video detail
 
-module.exports={AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse,addCourseToUser}
+module.exports={AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse,addCourseToUser, checkCoursePurchased}

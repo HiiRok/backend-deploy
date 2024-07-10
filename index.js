@@ -10,6 +10,7 @@ const userRouter= require('./routes/userRouter')
 const authMiddleware= require('./middlewares/authenticate')
 const courseCatRouter= require('./routes/course_routes')
 const {noAuthTrendRouter, AuthTrendRouter} = require('./routes/trendCoursesRoute')
+const checkCoursePurchase=require('./routes/coursePurchase')
 const path = require('path');
 
 app.use(cors())
@@ -22,6 +23,7 @@ app.use('/api/trend_course/auth',authMiddleware, AuthTrendRouter)
 
 app.use('/api/user',userRouter)
 app.use('/api/course',authMiddleware,courseCatRouter)
+app.use('/api/checkCoursePurchase',authMiddleware,checkCoursePurchase)
 
 
 const start = async ()=> {
