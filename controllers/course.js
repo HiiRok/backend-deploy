@@ -122,6 +122,28 @@ const getOneCourse= async (req,res)=>{
 	}
 }
 
+const getOneCourseByParam= async (req,res)=>{
+	
+	try{
+		const course= await Courses.findOne({_id: req.params.id})
+		
+		console.log("OneCourse \n")
+
+		if(!course)
+		{
+			console.log("Course Not found")
+			res.status(404).json("Course Not Found")
+			return
+		}
+
+		res.status(200).json(course)
+	}
+	catch(error){
+		console.log("Get Course", error)
+		res.status(500).json(error)
+	}
+}
+
 
 const addCourseToUser = async (req,res)=>{
 
@@ -176,4 +198,4 @@ const checkCoursePurchased = async (req,res)=>{
 
 //TODO: update Course, Remove Video, update Video detail
 
-module.exports={AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse,addCourseToUser, checkCoursePurchased}
+module.exports={getOneCourseByParam,AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse,addCourseToUser, checkCoursePurchased}
