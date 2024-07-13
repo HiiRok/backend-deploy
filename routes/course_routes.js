@@ -2,7 +2,7 @@ const express= require('express')
 
 const router= express.Router();
 const {AddCourseCat,getAllCoursesCat,addCourseToCat,DeleteCat}= require('../controllers/course_cat')
-const {AddCourse,AddVideo,AllCourses,DeleteCourse,getOneCourse,addCourseToUser,getOneCourseByParam}= require('../controllers/course')
+const {AddCourse,AddVideo,AllCourses,DeleteCourse,getOneCourse,addCourseToUser,getOneCourseByParam,getAllUserCourses}= require('../controllers/course')
 
 const Payment= require('../controllers/payment')
 const CoursePayment = require('../controllers/PaymentNew')
@@ -13,7 +13,7 @@ router.route('/courses').post(AddCourse).get(AllCourses).delete(DeleteCourse);
 router.route('/courseOne').get(getOneCourse)
 router.route('/:id').get(getOneCourseByParam)
 router.route('/courses/video').put(AddVideo)
-router.route('/userCourse').put(addCourseToUser);
+router.route('/userCourse').put(addCourseToUser).get(getAllUserCourses);
 
 
 router.route('/payment').post(CoursePayment)

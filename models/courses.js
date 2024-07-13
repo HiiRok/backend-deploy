@@ -1,7 +1,7 @@
 const mongoose= require('mongoose')
 
 
-const contentSchema = new Schema({
+const contentSchema = new mongoose.Schema({
 	id: {
 	  type: mongoose.Schema.Types.ObjectId, // or you can use ObjectId if you prefer: type: Schema.Types.ObjectId
 	  required: true

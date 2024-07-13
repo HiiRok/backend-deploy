@@ -196,6 +196,30 @@ const checkCoursePurchased = async (req,res)=>{
 }
 
 
+const getAllUserCourses=async (req,res)=>{
+	console.log("Fetching All User Courses")
+
+	try {
+		
+		const user = await Users.findOne({_id:req.user.userID});
+		let coursesIdList = user.courses;
+
+		let courses=[]
+
+		for (let i=0;i<coursesIdList.length;i++){
+			let course= await Course.findOne({_id:coursesIdList[i]})
+			courses.push(course)
+		}
+
+		res.status(200).json({courseList: courses, _id:user._id })
+
+	} catch (error) {
+		console.log(error)
+		res.status(500).json("Internal Server Error")
+	}
+}
+
+
 //TODO: update Course, Remove Video, update Video detail
 
-module.exports={getOneCourseByParam,AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse,addCourseToUser, checkCoursePurchased}
+module.exports={getAllUserCourses,getOneCourseByParam,AddCourse, AddVideo,AllCourses,DeleteCourse,getOneCourse,addCourseToUser, checkCoursePurchased}
