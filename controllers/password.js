@@ -60,7 +60,7 @@ const forgotPassword= async (req, res)=>{
                 res.status(201).json({success:true, msg:"Please check your email for OTP"})
 
             }else{
-                res.status(400).json({success:false, err: "Server Error"})
+                res.status(500).json({success:false, err: "Server Error"})
             }
 
         }else{
