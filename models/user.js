@@ -45,6 +45,10 @@ const userSchema = new mongoose.Schema(
 
 		organization: {
 			type: String,
+		},
+		token:{
+			type: String,
+			default:''
 		}
 	}
 )
