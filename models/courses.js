@@ -1,5 +1,26 @@
 const mongoose= require('mongoose')
 
+
+const contentSchema = new Schema({
+	id: {
+	  type: mongoose.Schema.Types.ObjectId, // or you can use ObjectId if you prefer: type: Schema.Types.ObjectId
+	  required: true
+	},
+	title: {
+	  type: String,
+	  required: true
+	},
+	duration: {
+	  type: Number,
+	  required: true
+	},
+	videoUrl: {
+	  type: String,
+	  required: true
+	}
+  });
+
+
 const courseSchema= new mongoose.Schema(
 	{
 	
@@ -31,9 +52,7 @@ const courseSchema= new mongoose.Schema(
 			required: [true, "Must provide Course Objectives"]
 		},
 
-		Content: {
-			type: Array   // contains the ids of all the videos it contains
-		},
+		Content: [contentSchema],   // contains the ids of all the videos it contains,
 
 		ImgPath: {
 			type: String // contains path to the thumbnail
