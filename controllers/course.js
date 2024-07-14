@@ -207,7 +207,8 @@ const getAllUserCourses=async (req,res)=>{
 		let courses=[]
 
 		for (let i=0;i<coursesIdList.length;i++){
-			let course= await Course.findOne({_id:coursesIdList[i]})
+			let course= await Courses.findOne({_id:coursesIdList[i]})
+
 			courses.push(course)
 		}
 
